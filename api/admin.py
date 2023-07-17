@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from api.models import (
+    WindFarm,
+    WindTurbine,
+    WindTurbineModel,
+    ElectricityMeter,
+)
+
+admin.site.register(WindFarm)
+admin.site.register(WindTurbine)
+admin.site.register(WindTurbineModel)
+admin.site.register(ElectricityMeter)
