@@ -1,4 +1,7 @@
 from rest_framework.generics import RetrieveAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .models import (
     ElectricityMeter,
     WindFarm,
@@ -9,7 +12,7 @@ from .serializers import (
     ElectricityMeterSerializer,
     WindFarmSerializer,
     WindTurbineModelSerializer,
-    WindTurbineSerializer,
+    WindTurbineSerializer, WindFarmTreeSerializer,
 )
 
 
@@ -31,3 +34,10 @@ class RetrieveWindTurbineModel(RetrieveAPIView):
 class RetrieveWindTurbine(RetrieveAPIView):
     queryset = WindTurbine.objects.all()
     serializer_class = WindTurbineSerializer
+
+
+class TreeView(APIView):
+    def get(self, request):
+        wind_farms = WindFarm.objects.all()
+        serializer = WindFarmTreeSerializer(instance=wind_farms, many=True)
+        return Response(serializer.data)
