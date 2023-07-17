@@ -1,0 +1,16 @@
+---
+services:
+  db:
+    image: "postgres:15"
+    container_name: "windfarm_postgres"
+    environment:
+      - POSTGRES_USER=eteam
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=windfarm
+    ports:
+      - "5432:5432"
+    volumes:
+      - windfarm_db:/var/lib/postgresql/data
+volumes:
+  windfarm_db:
+    driver: local
